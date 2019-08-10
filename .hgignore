@@ -1,0 +1,13 @@
+venv
+build
+dist
+test
+
+
+syntax: glob
+
+*.egg-info
+*.pyc
+*~
+.DS_Store
+*.kate-swp

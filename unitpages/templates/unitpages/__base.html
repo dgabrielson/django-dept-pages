@@ -1,0 +1,52 @@
+{% extends 'site_base.html' %}
+
+{% load unitpages_tags markup %}
+
+{# ########################################### #}
+
+{% block html_head_title %}{{ LONG_INSTITUTION_NAME }} - {{ LONG_UNIT_NAME }}{% if request.META.PATH_INFO != "/" %} - {% block page_title %}{{ page.title }}{% endblock %}{% endif %}{% endblock %}
+
+{# ########################################### #}
+
+{% block page_content_header %}
+    {% if page.title %}
+        {% if page.slug != "index" %}
+            {{ page.title }}
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{# ########################################### #}
+
+{% block page_content_body %}
+
+    {% if page.content %}
+        {% prerender_with_context page.content "page_content" %}{# template render #}
+        {{ page_content|restructuredtext }}{# restructured text render #}
+    {% endif %}
+
+    {% block template_specific %}
+    {% endblock template_specific %}
+
+{% endblock page_content_body %}
+
+
+{# ########################################### #}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    <!-- page breadcrumbs -->
+    {% for url, title in page.breadcrumbs %}
+        <span class="divider">&gt;</span>
+        {% include './includes/breadcrumb.html' %}
+    {% endfor %}
+    <span class="divider">&gt;</span>
+    <!-- this page -->
+    {% if page.url != request.path %}
+        <a href="{{ page.url }}">{{ page.get_short_title_display }}</a>
+    {% else %}
+        {{ page.get_short_title_display }}
+    {% endif %}
+{% endblock breadcrumbs %}
+
+{# ########################################### #}

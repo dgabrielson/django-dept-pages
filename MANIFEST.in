@@ -1,0 +1,7 @@
+include LICENSE.txt
+include requirements.txt
+#recursive-include unitpages/static *
+recursive-include unitpages/templates *
+
+# added by check_manifest.py
+recursive-include unitpages *.js

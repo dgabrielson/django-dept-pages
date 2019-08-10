@@ -1,0 +1,6 @@
+{{ object.title }}{% load unitpages_tags %}
+
+{% if page.content %}
+    {% prerender_with_context page.content "page_content" %}{# template render #}
+    {{ page_content }}{# NO restructured text render #}
+{% endif %}

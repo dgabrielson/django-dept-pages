@@ -1,0 +1,61 @@
+{% extends 'unitpages/__base.html' %}
+
+
+{# ######################################### #}
+
+{% block html_head %}
+{{ block.super }}
+
+{{ form.media }}
+
+
+{% endblock %}
+
+{# right sidebar should be empty in twocol mode #}
+{% block page_right_sidebar %}{% endblock %}
+{% block page_main_classes %}col-lg-10{% endblock %}
+
+{# ######################################### #}
+
+{% block page_title %}Update {{ page.title }}{% endblock %}
+{% block page_content_header %}Update Page:<br>{{ page.title }}{% endblock %}
+
+{# ########################################### #}
+
+{% block page_content_body %}
+
+<form enctype="multipart/form-data" action="" method="post" class="form">{% csrf_token %}
+    <div class="form-container">
+        <table class="table-form">
+            <tr class="submit-row">
+                <td>
+                    <input type="submit" value="Update" class="save-btn">
+                </td>
+            </tr>
+        </table>
+        <table class="table-form">
+            {# form #}
+            {% include 'includes/form.html' %}
+        </table>
+        {% include 'unitpages/includes/inline_tabular_formset.html' with formset=formset formset_header="Page assets" %}
+        <table class="table-form">
+            <tr class="submit-row">
+                <td>
+                    <input type="submit" value="Update" class="save-btn">
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+{% endblock %}
+
+{# ########################################### #}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    <span class="divider">&gt;</span>
+    Update
+{% endblock breadcrumbs %}
+
+{# ########################################### #}

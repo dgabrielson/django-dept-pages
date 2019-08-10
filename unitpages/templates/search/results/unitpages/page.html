@@ -1,0 +1,20 @@
+{# search results for a publication #}
+{# context: result #}
+{# use div classes: link, extra info #}
+
+{% load markup unitpages_tags %}
+
+<div class="link">
+    <a href="{{ result.object.get_absolute_url }}">
+        {{ result.object }}
+    </a>
+</div>
+<div class="content-preview">
+    {% if result.object.content %}
+        {% prerender_with_context result.object.content "page_content" %}{# template render #}
+        {{ page_content|restructuredtext|truncatewords_html:"30"|striptags }}{# restructured text render #}
+    {% endif %}
+</div>
+<div class="extra-info">
+    Score: {{ result.score }}
+</div>

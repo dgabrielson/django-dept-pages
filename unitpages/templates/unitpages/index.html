@@ -1,0 +1,17 @@
+{% extends 'unitpages/__base.html' %}
+
+{% block page_content_body %}
+
+{% if perms.unitpages.change_page %}
+    <ul class="pagenav">
+        <li>
+            <a href="{% url 'unitpages-update' url=page.url %}">
+                Update page
+            </a>
+        </li>
+    </ul>
+{% endif %}
+
+{{ block.super }}
+
+{% endblock %}
